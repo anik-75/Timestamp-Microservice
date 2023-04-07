@@ -25,12 +25,12 @@ app.get("/api/hello", function (req, res) {
 
 app.get("/api/:date", function (req, res) {
   let date_string = req.params.date;
-  if (date_string.includes("-")) {
+  if (date_string.includes("-") || date_string.includes(" ")) {
     //String -> UTC format given
     let date = new Date(date_string);
 
     // check Validation
-    if (date.toString == "Invalid Date") {
+    if (date.toString() == "Invalid Date") {
       res.json({
         error: "Invalid Date",
       });
@@ -44,7 +44,7 @@ app.get("/api/:date", function (req, res) {
     // Integer -> unix format given
     let date = new Date(+date_string);
     // check Validation
-    if (date.toString == "Invalid Date") {
+    if (date.toString() == "Invalid Date") {
       res.json({
         error: "Invalid Date",
       });
